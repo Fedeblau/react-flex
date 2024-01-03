@@ -35,3 +35,11 @@ export const getProducts = () => {
         }, 1000)
     })
 }
+
+export const getProductsByCategory = (category) => {
+    return new Promise((res, rej) =>
+    setTimeout( () => {
+        res(products.filter(prod=> prod.category===category))
+    }, 2000)
+    )
+}

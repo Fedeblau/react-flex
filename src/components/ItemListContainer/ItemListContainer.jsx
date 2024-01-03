@@ -56,10 +56,7 @@ const ItemListContainer = ({ greeting }) => {
     )
   }, [])
 
-
   // console.log("fuera del effect", products)
-
-
 
   return (
 
