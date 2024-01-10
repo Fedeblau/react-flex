@@ -1,6 +1,6 @@
 const products = [
     {
-        id: '1',
+        id: 1,
         name: 'iphone 12',
         price: 1000,
         category: 'celular',
@@ -9,7 +9,7 @@ const products = [
         description: 'Descripcion de Iphone 12'
     },
     {
-        id: '2',
+        id: 2,
         name: 'samsung s21',
         price: 800,
         category: 'celular',
@@ -18,7 +18,7 @@ const products = [
         description: 'Descripcion de Samsung s21'
     },
     {
-        id: '3',
+        id: 3,
         name: 'Ipad 8va generacion',
         price: 1200,
         category: 'tablet',
@@ -27,6 +27,7 @@ const products = [
         description: 'Descripcion de Ipad'
     }
 ]
+
 
 export const getProducts = () => {
     return new Promise((resolve, reject) => {
@@ -41,5 +42,13 @@ export const getProductsByCategory = (category) => {
     setTimeout( () => {
         res(products.filter(prod=> prod.category===category))
     }, 2000)
+    )
+}
+
+export const getProductById = (id) => {
+    return new Promise((res,rej) => 
+        setTimeout(() =>  {
+            res(products.find(prod => prod.id.toString() === id))
+        }, 1000)
     )
 }

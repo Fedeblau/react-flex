@@ -4,29 +4,31 @@ import Button from "./Button/Button"
 import Card from "./Card/Card"
 import ItemListContainer from "./ItemListContainer/ItemListContainer"
 import NavBar from "./NavBar/NavBar"
-import PokeApi from "./ejemplos/PokeApi"
-import PokeLista from "./ejemplos/PokeLista"
-import RenderProps from "./ejemplos/RenderProps"
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom"
+import Home from "./home/Home"
+import ItemDetailContainer from "./ItemDetailContainer/ItemDetailContainer"
 
 
 
 
 function App() {
 
-  const [categoria, setCategoria] = useState(null) 
-
-  const changeCategory=(param)=>{
-    setCategoria(param)
-}
 
   return (
+
+
     <>
+    <BrowserRouter>
+
         <NavBar />
-      {/* <PokeLista /> */}
-      {/* <ItemListContainer greeting='hola comision 57905'/> */}
-      {/* <Card /> */}
-      {/* <PokeApi /> */}
-      <RenderProps categoria={categoria} changeCategory={changeCategory}/>
+        <Routes>
+
+          <Route path="/" element={<ItemListContainer greeting='hola'/>}/>
+          <Route path="/category/:category" element={<ItemListContainer greeting='hola'/>}/>
+          <Route path="producto/:id" element={<ItemDetailContainer/>}/>
+        </Routes>
+
+    </BrowserRouter>
     </>
   )
 }
