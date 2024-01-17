@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { getProducts, getProductsByCategory } from '../../../asyncMock'
 import ItemList from '../ItemList/ItemList'
 import { useParams } from 'react-router-dom'
+import { MyContext } from '../../context/MyContext'
 
 const ItemListContainer = ({ greeting }) => {
   const [loading, setLoading] = useState(true)
   const [products, setProducts] = useState([])
+
+  const {profe} = useContext(MyContext)
 
 
 
@@ -13,17 +16,22 @@ const ItemListContainer = ({ greeting }) => {
  
 
   useEffect(() => {
-    category ?
-    getProductsByCategory(category).then( res => {
-      setProducts(res)
-    }):
-    getProducts().then(res => {
-      setProducts(res)
-    }).finally(() => {
-      setLoading(false)
-    }
-    )
-  }, [category])
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        const result = category
+          ? await getProductsByCategory(category)
+          : await getProducts();
+        setProducts(result);
+      } catch (error) {
+        console.error('Error en el fetch de useEffect:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, [category]);
 
   // console.log("fuera del effect", products)
 

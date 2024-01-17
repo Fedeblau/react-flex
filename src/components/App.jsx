@@ -7,29 +7,39 @@ import NavBar from "./NavBar/NavBar"
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom"
 import Home from "./home/Home"
 import ItemDetailContainer from "./ItemDetailContainer/ItemDetailContainer"
+import { MyContext } from "../context/MyContext"
+import { CartContext, CartContextProvider } from "../context/CartContext"
+import Cart from "../pages/Cart"
 
 
 
 
 function App() {
+  
+
+  const profe = 'fede'
+  const tutor = 'josué'
 
 
   return (
 
 
-    <>
-    <BrowserRouter>
+    <MyContext.Provider value={ { profe, tutor } }>
+      <CartContextProvider>
+        <BrowserRouter>
 
-        <NavBar />
-        <Routes>
+          <NavBar />
+          <Routes>
 
-          <Route path="/" element={<ItemListContainer greeting='hola'/>}/>
-          <Route path="/category/:category" element={<ItemListContainer greeting='hola'/>}/>
-          <Route path="producto/:id" element={<ItemDetailContainer/>}/>
-        </Routes>
+            <Route path="/" element={<ItemListContainer greeting='hola' />} />
+            <Route path="/category/:category" element={<ItemListContainer greeting='hola' />} />
+            <Route path="producto/:id" element={<ItemDetailContainer />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
 
-    </BrowserRouter>
-    </>
+        </BrowserRouter>
+      </CartContextProvider>
+    </MyContext.Provider>
   )
 }
 
