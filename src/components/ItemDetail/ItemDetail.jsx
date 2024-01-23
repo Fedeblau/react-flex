@@ -9,7 +9,6 @@ const ItemDetail = ({producto}) => {
     const [counter, setCounter] = useState(1)
     const [addedProduct, setAddedProduct] = useState({})
 
-    
     const {tutor} = useContext(MyContext)
     
     const { addToCart, cart, isInCart } = useContext(CartContext)
@@ -27,6 +26,10 @@ const ItemDetail = ({producto}) => {
         const newItem = {...producto, cantidad:counter}
         addToCart(newItem)     
     }
+
+
+
+    
 
     
 // volvemos 20:08 !!
